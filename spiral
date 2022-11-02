@@ -1,46 +1,45 @@
 class Solution {
     public List<List<int>> generateMatrix(int A) {
         
-        List<List<int>> result = new List<List<int>>();
-        for(int i=0; i<A;i++)
+        List<List<int>> matrix = new List<List<int>>();
+
+        for(int i=0; i<A; i++)
         {
-            result.Add(new List<int>());
+            matrix.Add(new List<int>());
             for(int j=0; j<A; j++)
             {
-                result[i].Add(0);
+                matrix[i].Add(0);
             }
         }
-        
-        int rows,cols;
-        int row,col,dir,layer;
-        rows=cols = A;
-        row=col=dir=layer=0;
-        result[0][0]=1;
 
-        for(int cv=2; cv <= A*A; cv++)
+
+        int rows, cols;
+        rows=cols=A;
+        int row,col,dir, layer;
+        row=col=dir=layer=0;
+        matrix[0][0]=1;
+        
+        for(int rc=2; rc<= A*A; rc++)
         {
             switch(dir)
             {
                 case 0:
-                    if(col == cols-layer-1)
+                    if(col== cols-layer-1)
                     {
                         row++;
                         dir=1;
-
                     }
-                    else
-                    {
-                       col++; 
+                    else {
+                        col++;
                     }
                 break;
                 case 1:
-                    if(row == rows-layer-1)
+                    if(row== rows-layer-1)
                     {
                         col--;
-                        dir=2;
+                        dir =2;
                     }
-                    else
-                    {
+                    else {
                         row++;
                     }
                 break;
@@ -49,30 +48,28 @@ class Solution {
                     {
                         row--;
                         dir=3;
-
                     }
-                    else
-                    {
+                    else {
                         col--;
                     }
                 break;
                 case 3:
-                    if(row == layer+1)
+                    if(col== layer+1)
                     {
                         dir=0;
                         col++;
                         layer++;
                     }
                     else
-                        row --;
-                    
+                    {
+                        row--;
+                    }
                 break;
+
             }
-
-            result[row][col]=cv;
+                matrix[row][col] = rc;
         }
-
-        return result;
+        return matrix;
 
     }
 }
