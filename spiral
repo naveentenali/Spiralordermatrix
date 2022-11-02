@@ -1,0 +1,78 @@
+class Solution {
+    public List<List<int>> generateMatrix(int A) {
+        
+        List<List<int>> result = new List<List<int>>();
+        for(int i=0; i<A;i++)
+        {
+            result.Add(new List<int>());
+            for(int j=0; j<A; j++)
+            {
+                result[i].Add(0);
+            }
+        }
+        
+        int rows,cols;
+        int row,col,dir,layer;
+        rows=cols = A;
+        row=col=dir=layer=0;
+        result[0][0]=1;
+
+        for(int cv=2; cv <= A*A; cv++)
+        {
+            switch(dir)
+            {
+                case 0:
+                    if(col == cols-layer-1)
+                    {
+                        row++;
+                        dir=1;
+
+                    }
+                    else
+                    {
+                       col++; 
+                    }
+                break;
+                case 1:
+                    if(row == rows-layer-1)
+                    {
+                        col--;
+                        dir=2;
+                    }
+                    else
+                    {
+                        row++;
+                    }
+                break;
+                case 2:
+                    if(col==layer)
+                    {
+                        row--;
+                        dir=3;
+
+                    }
+                    else
+                    {
+                        col--;
+                    }
+                break;
+                case 3:
+                    if(row == layer+1)
+                    {
+                        dir=0;
+                        col++;
+                        layer++;
+                    }
+                    else
+                        row --;
+                    
+                break;
+            }
+
+            result[row][col]=cv;
+        }
+
+        return result;
+
+    }
+}
