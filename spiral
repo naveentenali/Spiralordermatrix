@@ -24,7 +24,7 @@ class Solution {
             switch(dir)
             {
                 case 0:
-                    if(col== cols-layer-1)
+                    if(col == cols-layer-1)
                     {
                         row++;
                         dir=1;
@@ -54,7 +54,7 @@ class Solution {
                     }
                 break;
                 case 3:
-                    if(col== layer+1)
+                    if(row== layer+1)
                     {
                         dir=0;
                         col++;
